@@ -21,11 +21,12 @@ from selenium.webdriver.common.by import By
 from lib2to3.pgen2.driver import Driver
 
 
-class About(unittest.TestCase):
+class About():
     
-    def __init__(self,driver):
-        self.driver=driver
-        
+    def __init__(self, driver):
+        self.driver = driver
+
+
         
     def test_openHtmlPage(self,text,title):
         self.driver.find_element_by_name(text).click()

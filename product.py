@@ -4,7 +4,6 @@
 '''
 
 import random
-import unittest
 import os
 from appium import webdriver
 import time
@@ -22,7 +21,7 @@ from lib2to3.pgen2.driver import Driver
 
 
 
-class Product(unittest.TestCase):
+class Product():
     
     def __init__(self,driver):
         self.driver=driver

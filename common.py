@@ -80,6 +80,10 @@ class Common:
         
 
         
-    
-        
-        
+    def find_element(self,loc):
+        try:
+            WebDriverWait(self.driver,15).until(lambda driver:driver.find_element(*loc).is_displayed())
+            return self.driver.find_element(*loc)
+        except:
+            print u"%s 页面中未能找到 %s 元素" %(self,loc)
+

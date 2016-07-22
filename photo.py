@@ -60,7 +60,7 @@ class Appium_Extend(object):
         else:
             raise Exception("%s is not exist" %image_path)
 
-    #http://testerhome.com/topics/202
+   
     def same_as(self, load_image, percent):
         #对比图片，percent值设为0，则100%相似时返回True，设置的值越大，相差越大
         import math

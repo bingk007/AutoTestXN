@@ -32,21 +32,21 @@ class Operation:
     def accessAccountInfo(self):
         Common(self.driver).recover()
         self.driver.find_element_by_name('我的').click()
-        self.driver.find_element_by_name('小牛君').click()
+        self.driver.find_element_by_name('大大君').click()
         WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'账户信息')))
 
 
     def accessProduct(self):
         Common(self.driver).recover()
-        self.driver.find_elements_by_id('com.xiaoniu.finance:id/menu_item')[1].click()
+        self.driver.find_elements_by_id('com.package:id/menu_item')[1].click()
         WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'项目分类')))
         self.driver.find_element_by_name('项目分类').click()
         
         
-    def checkButtom(self):
-        try:
-            self.driver.find_element_by_class_name().click()
-        except:
-            self.driver.keyevent(4)
-            
+#     def checkButtom(self):
+#         try:
+#             self.driver.find_element_by_class_name().click()
+#         except:
+#             self.driver.keyevent(4)
+#             
         

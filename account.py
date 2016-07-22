@@ -23,7 +23,7 @@ from pydoc import replace
 from request import Request
 from cMethod import CMethod
 
-class Account(unittest.TestCase):
+class Account():
     
     
     def __init__(self,driver):
@@ -33,23 +33,23 @@ class Account(unittest.TestCase):
         
     def test_register(self):
         '''
-        code=self.driver.find_element_by_id("com.xiaoniu.finance:id/login_iv_code")
+        code=self.driver.find_element_by_id("com.package:id/login_iv_code")
         Appium_Extend(self.driver).get_screenshot_by_element(code)
         Appium_Extend(self.driver).write_to_file("E:\python\Lib\site-packages\pytesser", "codePhoto","tif") 
         vercode=getVerCode().getverify('codePhoto.tif')
         
         '''
         self.driver.implicitly_wait(1)
-        self.driver.find_element_by_name("免费注册").click()
+        self.driver.find_element_by_name("免费注册领红包").click()
         self.driver.implicitly_wait(1)
         self.driver.find_element_by_name("请输入手机号码").send_keys(GVariable.teleNum)
         print GVariable.teleNum
-        self.driver.find_element_by_name('推荐人').click()
-        self.driver.find_element_by_name("推荐人的用户名或手机号").send_keys('manchao')
+        # self.driver.find_element_by_name('推荐人').click()
+        # self.driver.find_element_by_name("推荐人的用户名或手机号").send_keys('manchao')
         self.driver.find_element_by_name("下一步").click()
         self.driver.implicitly_wait(1)
         self.driver.find_element_by_name("确定").click()
-        WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'注册')))
+        WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'设置密码')))
         views=self.driver.find_elements_by_class_name('android.widget.EditText')
         views[0].send_keys('aaa12345')
         views[1].send_keys(Common(self.driver).getVercode(GVariable.teleNum))
@@ -59,7 +59,7 @@ class Account(unittest.TestCase):
         
     def test_quickPay(self,bank):
         self.driver.activate_ime_engine('io.appium.android.ime/.UnicodeIME')
-        self.driver.find_element_by_name("请输入您的开户姓名").send_keys(u"小牛君")
+        self.driver.find_element_by_name("请输入您的开户姓名").send_keys(u"大大君")
         self.driver.find_element_by_name("请输入您的身份证号").send_keys(IdNo().makeNO())
         self.driver.deactivate_ime_engine()
         self.driver.find_element_by_name("请选择您的银行卡开户银行").click()
@@ -109,8 +109,8 @@ class Account(unittest.TestCase):
         
     def test_withdraw(self):
         WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'提现金额'))) 
-        self.driver.find_element_by_id("com.xiaoniu.finance:id/et_input").click()       
-        self.driver.find_element_by_id("com.xiaoniu.finance:id/et_input").send_keys('1000')
+        self.driver.find_element_by_id("com.package:id/et_input").click()       
+        self.driver.find_element_by_id("com.package:id/et_input").send_keys('1000')
         #self.driver.hide_keyboard()
         self.driver.find_element_by_name('下一步').click()
         WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'提现金额')))
@@ -168,9 +168,9 @@ class Account(unittest.TestCase):
         self.driver.find_element_by_name('确定').click()
         
     def test_account(self):
-        value_amount=self.driver.find_element_by_id('com.xiaoniu.finance:id/total_amount').text.replace(',','')
-        value_earnings=self.driver.find_element_by_id('com.xiaoniu.finance:id/account_accumulate_earnings').text.replace(',','')
-        value_availble=self.driver.find_element_by_id('com.xiaoniu.finance:id/availble_value').text.replace(',','')
+        value_amount=self.driver.find_element_by_id('com.package:id/total_amount').text.replace(',','')
+        value_earnings=self.driver.find_element_by_id('com.package:id/account_accumulate_earnings').text.replace(',','')
+        value_availble=self.driver.find_element_by_id('com.package:id/availble_value').text.replace(',','')
         respon=Request().getData(GVariable.httpUrl+'my/account/details.json')
         Request().assertResult(respon['totalAssets'],value_amount)
         Request().assertResult(respon['totalEarningsAmount'],value_earnings)
@@ -178,12 +178,12 @@ class Account(unittest.TestCase):
         
         
     def test_checkMoney(self):
-        value_total_money=self.driver.find_element_by_id('com.xiaoniu.finance:id/AAIF_Tv_Total').text.replace(',','')
-        value_available=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_available').text.replace(',','')
-        value_frozen=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_frozen').text.replace(',','')
-        value_principal=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_principal').text.replace(',','')
-        value_profit=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_profit').text.replace(',','')
-        value_hqn=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_hqn').text.replace(',','')
+        value_total_money=self.driver.find_element_by_id('com.package:id/AAIF_Tv_Total').text.replace(',','')
+        value_available=self.driver.find_element_by_id('com.package:id/amount_rl_available').text.replace(',','')
+        value_frozen=self.driver.find_element_by_id('com.package:id/amount_rl_frozen').text.replace(',','')
+        value_principal=self.driver.find_element_by_id('com.package:id/amount_rl_principal').text.replace(',','')
+        value_profit=self.driver.find_element_by_id('com.package:id/amount_rl_profit').text.replace(',','')
+        value_hqn=self.driver.find_element_by_id('com.package:id/amount_rl_hqn').text.replace(',','')
         respon=Request().getData(GVariable.httpUrl+'my/assets.json')
         Request().assertResult(respon['totalAssets'],value_total_money)
         Request().assertResult(respon['availableBalance'],value_available)
@@ -195,7 +195,7 @@ class Account(unittest.TestCase):
     def test_checkMoneyRecord(self):
         self.driver.implicitly_wait(2)
         value=[]
-        value_fund_change=self.driver.find_elements_by_id('com.xiaoniu.finance:id/item_fund_change')
+        value_fund_change=self.driver.find_elements_by_id('com.package:id/item_fund_change')
         for i in range(5):
             changeValue=value_fund_change[i].text.replace(',','')
             value.append(changeValue)
@@ -205,11 +205,11 @@ class Account(unittest.TestCase):
             
             
     def test_checkIncome(self):
-        value_total_in_money=self.driver.find_element_by_id('com.xiaoniu.finance:id/AAIF_Tv_Total').text.replace(',','')
-        value_income_receive=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_income_receive').text.replace(',','')
-        value_income_will=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_income_will').text.replace(',','')
-        value_income_friend=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_income_friend').text.replace(',','')
-        value_income_game=self.driver.find_element_by_id('com.xiaoniu.finance:id/amount_rl_income_game').text.replace(',','')
+        value_total_in_money=self.driver.find_element_by_id('com.package:id/AAIF_Tv_Total').text.replace(',','')
+        value_income_receive=self.driver.find_element_by_id('com.package:id/amount_rl_income_receive').text.replace(',','')
+        value_income_will=self.driver.find_element_by_id('com.package:id/amount_rl_income_will').text.replace(',','')
+        value_income_friend=self.driver.find_element_by_id('com.package:id/amount_rl_income_friend').text.replace(',','')
+        value_income_game=self.driver.find_element_by_id('com.package:id/amount_rl_income_game').text.replace(',','')
         respon=Request().getData(GVariable.httpUrl+'my/assets.json')
         Request().assertResult(respon['totalEarningsAmount'],value_total_in_money)
         Request().assertResult(respon['dueEarningsAmount'],value_income_receive)
@@ -218,7 +218,14 @@ class Account(unittest.TestCase):
         Request().assertResult(respon['actRewardsAmount'],value_income_game)
         
         
-    
+    def test_login(self,account,password):
+        views=self.driver.find_elements_by_class_name('android.widget.EditText')
+        views[0].send_keys('account')
+        views[1].send_keys('password')
+        self.driver.find_element_by_name('登录').click()
+        WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located((By.NAME,'.......')))
+        
+        
         
 
         
