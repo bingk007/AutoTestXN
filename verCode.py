@@ -119,5 +119,4 @@ class getVerCode:
         
         return verCode
     
-#getVerCode().getverify('codePhoto.tif')
 
