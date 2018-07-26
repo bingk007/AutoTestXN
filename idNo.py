@@ -25,4 +25,3 @@ class IdNo:
         return '%s%s' %(x, self.LAST[y % 11])
 
 
-
