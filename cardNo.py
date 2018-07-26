@@ -47,5 +47,4 @@ class CardNO:
             n=10-f
         cardNO=cardNO2+str(n)
         return cardNO
-#print CardNO.bankName+':'+CardNO().makeNO()
 
