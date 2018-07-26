@@ -8,4 +8,3 @@ class MyError(Exception):
         self.error=error
         print error
         
-
